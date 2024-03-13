@@ -16,18 +16,19 @@ function RootSideMenuLeft() {
     return (
         <div css={s.layout(show)}>
             <div css={s.header}>
-                <button css={s.menuButton} onClick={handleCloseClick()}>
+                <button css={s.menuButton} onClick={handleCloseClick}>
                     <HiMenu />
                 </button>
             </div>
 
             <div css={s.profile}>
-
+                
             </div>
 
             <div css={s.menuList}>
-                <Link css={s.menuLink}>도서 검색</Link>
-
+                <Link css={s.menuLink}>
+                    도서 검색
+                </Link>
             </div>
         </div>
     );

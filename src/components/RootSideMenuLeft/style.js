@@ -2,11 +2,11 @@ import { css } from "@emotion/react";
 
 
 export const layout = (show) => css`
-    transition: left 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     opacity: ${show ? 1 : 0};
     position: absolute;
-    left: 0;
-    top: ${show ? "0px" : "-200px"};
+    top: 0;
+    left: ${show ? "0px" : "-200px"};
     box-sizing: border-box;
     border-right: 1px solid #dbdbdb;
     padding: 15px 0px;
