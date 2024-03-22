@@ -41,6 +41,7 @@ function RootHeader() {
             return config;
         });
         queryClient.invalidateQueries("principalQuery");
+        window.location.replace("/auth/signin");
     }
 
 
