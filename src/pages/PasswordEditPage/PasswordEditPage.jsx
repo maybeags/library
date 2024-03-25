@@ -15,7 +15,9 @@ function PasswordEditPage(props) {
         mutationKey: "editPasswordMutation",
         mutationFn: editPasswordRequest,
         onSuccess: response => {
-            console.log(response);
+            alert("비밀번호를 정상적으로 수정하였습니다.\n다시 로그인하세요.");
+            localStorage.removeItem("AccessToken");
+            window.location.replace("/auth/signin");
         },
         onError: error => {
             if(error.response.status == 400) {

@@ -13,6 +13,7 @@ import FullSizeLoader from "../components/FullSizeLoader/FullSizeLoader";
 import MyPage from "../pages/MyPage/MyPage";
 import PageContainer from "../components/PageContainer/PageContainer";
 import PasswordEditPage from "../pages/PasswordEditPage/PasswordEditPage";
+import BookManagement from "../pages/Admin/BookManagement/BookManagement";
 
 
 
@@ -67,12 +68,13 @@ function AuthRoute(props) {
             <PageContainer>
                 {
                     principalQuery.isLoading 
-                    ? <FullSizeLoader size={10}/>
+                    ? <FullSizeLoader size={20}/>
                     : <Routes>
                         <Route path="/auth/*" element={ <AuthPage /> } />
                         <Route path="/" element={ <HomePage /> }  />    
                         <Route path="/account/mypage" element={ <MyPage /> }  />    
-                        <Route path="/account/edit/password" element={ <PasswordEditPage /> }  />    
+                        <Route path="/account/edit/password" element={ <PasswordEditPage /> }  /> 
+                        <Route path="/admin/book/management" element={ <BookManagement /> } />   
                     </Routes>
                 }
             </PageContainer>
