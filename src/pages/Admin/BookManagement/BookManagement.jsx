@@ -2,8 +2,51 @@
 import Select from "react-select";
 import BookRegisterInput from "../../../components/BookRegisterInput/BookRegisterInput";
 import * as s from "./style";
+import { useQuery } from "react-query";
+import { getAllBookTypeRequest, getAllCategoryRequest } from "../../../apis/api/optios";
+import { useState } from "react";
 
 function BookManagement(props) {
+
+    const [ bookTypeOptions, setBookTypeOptions ] = useState([]); 
+    const [ categoryOptions, setCategoryOptions ] = useState([]); 
+
+    const bookTypeQuery = useQuery(
+        ["bookTypeQuery"],
+        getAllBookTypeRequest,
+        {
+            onSuccess: response => {
+                setBookTypeOptions(() => response.data.map(bookType => {
+                    return {
+                        value: bookType.bookTypeId,
+                        label: bookType.bookTypeName
+                    }
+                }));
+            },
+            retry: 0,
+            refetchOnWindowFocus: false
+        }
+    );
+
+    const categoryQuery = useQuery(
+        ["categoryQuery"],
+        getAllCategoryRequest,
+        {
+            onSuccess: response => {
+                setCategoryOptions(() => response.data.map(category => {
+                    return {
+                        value: category.categoryId,
+                        label: category.categoryName
+                    }
+                }));
+            },
+            retry: 0,
+            refetchOnWindowFocus: false
+        }
+    
+    );
+
+
 
     const selectStyle = {
         control: (baseStyles, state) => ({
@@ -41,19 +84,11 @@ function BookManagement(props) {
                             <tr>
                                 <th css={s.registerTh}>도서형식</th>
                                 <td>
-                                    <Select styles={selectStyle} options={
-                                        [{
-                                            value: "test", label: "test"
-                                        }]
-                                    }/>
+                                    <Select styles={selectStyle} options={bookTypeOptions}/>
                                 </td>
                                 <th css={s.registerTh}>카테고리</th>
                                 <td>
-                                    <Select styles={selectStyle} options={
-                                        [{
-                                            value: "test", label: "test"
-                                        }]
-                                    }/>
+                                    <Select styles={selectStyle} options={categoryOptions}/>
                                 </td>
                             </tr>
                             <tr>
